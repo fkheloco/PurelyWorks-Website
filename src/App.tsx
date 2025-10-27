@@ -13,6 +13,7 @@ import {
   Check,
   X
 } from 'lucide-react';
+import Typewriter from 'typewriter-effect';
 import './App.css';
 
 function App() {
@@ -53,17 +54,38 @@ function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
+            className="headline-container"
           >
-            Scale Your Business with
-            <motion.span 
-              className="gradient-text"
-              animate={{ 
-                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-              }}
-              transition={{ duration: 5, repeat: Infinity }}
+            <span>Purely Works</span>
+            <motion.div 
+              className="typewriter-container"
             >
-              {' '}AI-Powered Services
-            </motion.span>
+              <Typewriter
+                onInit={(typewriter) => {
+                  typewriter
+                    .typeString('for Admin')
+                    .pauseFor(1000)
+                    .deleteAll()
+                    .typeString('for Executives')
+                    .pauseFor(1000)
+                    .deleteAll()
+                    .typeString('for Managers')
+                    .pauseFor(1000)
+                    .deleteAll()
+                    .typeString('for Your Business')
+                    .pauseFor(1000)
+                    .deleteAll()
+                    .typeString('for You!')
+                    .start();
+                }}
+                options={{
+                  cursor: '_',
+                  delay: 60,
+                  deleteSpeed: 40,
+                  wrapperClassName: 'typewriter-text'
+                }}
+              />
+            </motion.div>
           </motion.h1>
 
           <motion.p
