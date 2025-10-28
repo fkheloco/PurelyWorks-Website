@@ -1,10 +1,74 @@
 :root {
+  /* Palette */
+  --primary: #667eea;
+  --secondary: #764ba2;
+  --accent: #f093fb;
+  --dark: #1a202c; /* text on light */
+  --light: #f7fafc; /* page bg on light */
+  --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+  /* Themed tokens */
+  --page-bg: #f7fafc;
+  --section-bg: #ffffff;
+  --card-bg: #ffffff;
+  --border: rgba(0,0,0,0.1);
+  --text: #1a202c;
+  --text-muted: #4a5568;
+  --hero-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #8aa4ff;
+    --secondary: #9d7be0;
+    --accent: #f7b3ff;
+    --dark: #e2e8f0; /* text on dark */
+    --light: #0b1220; /* page bg on dark */
+    --gradient: linear-gradient(135deg, #6e8bff 0%, #8a6eea 100%);
+
+    --page-bg: #0b1220;
+    --section-bg: #0f172a;
+    --card-bg: #111827;
+    --border: rgba(255,255,255,0.12);
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  /* Keep hero gradient consistent in dark mode */
+  --hero-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  }
+}
+
+/* Manual overrides */
+:root[data-theme="light"] {
   --primary: #667eea;
   --secondary: #764ba2;
   --accent: #f093fb;
   --dark: #1a202c;
   --light: #f7fafc;
   --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --page-bg: #f7fafc;
+  --section-bg: #ffffff;
+  --card-bg: #ffffff;
+  --border: rgba(0,0,0,0.1);
+  --text: #1a202c;
+  --text-muted: #4a5568;
+  --hero-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+:root[data-theme="dark"] {
+  --primary: #8aa4ff;
+  --secondary: #9d7be0;
+  --accent: #f7b3ff;
+  --dark: #e2e8f0;
+  --light: #0b1220;
+  --gradient: linear-gradient(135deg, #6e8bff 0%, #8a6eea 100%);
+  --page-bg: #0b1220;
+  --section-bg: #0f172a;
+  --card-bg: #111827;
+  --border: rgba(255,255,255,0.12);
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  /* Keep hero gradient consistent in dark mode */
+  --hero-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
 }
 
 * {
@@ -24,7 +88,8 @@ body {
 
 .app {
   min-height: 100vh;
-  background: var(--light);
+  background: var(--page-bg);
+  color: var(--text);
 }
 
 /* Scroll Progress */
@@ -47,9 +112,7 @@ body {
   justify-content: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-}
-}
+  background: var(--hero-gradient);
   color: white;
 }
 
@@ -202,7 +265,7 @@ body {
 /* Services Section */
 .services {
   padding: 6rem 2rem;
-  background: white;
+  background: var(--section-bg);
 }
 
 .container {
@@ -220,15 +283,16 @@ body {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
 .service-card {
-  background: white;
+  background: var(--card-bg);
   padding: 2.5rem;
   border-radius: 20px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
   transition: all 0.3s ease;
 }
 
@@ -250,7 +314,7 @@ body {
 .service-card h3 {
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
-  color: var(--dark);
+  color: var(--text);
 }
 
 .service-price {
@@ -261,7 +325,7 @@ body {
 }
 
 .service-card p {
-  color: #4a5568;
+  color: var(--text-muted);
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
@@ -276,18 +340,99 @@ body {
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.8rem;
-  color: #4a5568;
+  color: var(--text-muted);
+}
+
+/* Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--section-bg) 70%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-scrolled {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.nav-logo {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-link {
+  color: var(--text);
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.nav-link:hover { opacity: 1; }
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 999px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+}
+
+.theme-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.35rem 0.5rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.theme-btn.active { opacity: 1; background: color-mix(in srgb, var(--primary) 15%, transparent); }
+
+.nav-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .nav-link { display: none; }
+  .nav-menu-btn { display: inline-flex; }
 }
 
 /* Comparison Section */
 .comparison {
   padding: 6rem 2rem;
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  color: white;
+  background: var(--section-bg);
+  color: var(--text);
 }
 
 .comparison .section-title {
-  color: white;
+  color: var(--text);
 }
 
 .comparison-grid {
@@ -299,11 +444,10 @@ body {
 }
 
 .comparison-column {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: var(--card-bg);
   padding: 3rem;
   border-radius: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--border);
 }
 
 .comparison-column h3 {
@@ -322,7 +466,7 @@ body {
   gap: 1rem;
   padding: 1rem 0;
   font-size: 1.1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--border);
 }
 
 /* Philosophy Section */
@@ -438,5 +582,11 @@ body {
   
   .comparison-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
