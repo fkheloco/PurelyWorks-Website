@@ -17,6 +17,7 @@ import { useEffect, useState } from 'react';
 import Typewriter from 'typewriter-effect';
 import './App.css';
 import Navbar from './components/Navbar';
+import { ContactForm } from './components/contact';
 
 type Theme = 'light' | 'dark' | 'auto';
 
@@ -285,6 +286,9 @@ function App() {
               className="btn-primary"
               whileHover={{ scale: 1.05, boxShadow: "0 10px 40px rgba(102, 126, 234, 0.4)" }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               Start Your Project <ArrowRight className="icon-small" />
             </motion.button>
@@ -292,6 +296,9 @@ function App() {
               className="btn-secondary"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                document.getElementById('philosophy')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               See How We Work
             </motion.button>
@@ -585,6 +592,36 @@ function App() {
         </div>
       </section>
 
+      {/* Contact Form Section */}
+      <motion.section
+        id="contact"
+        className="contact-section"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+      >
+        <div className="container">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-title"
+          >
+            Get Started with Purely Works
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-subtitle"
+            style={{ textAlign: 'center', marginBottom: '3rem' }}
+          >
+            Tell us about your business and we'll show you how AI can help
+          </motion.p>
+          <ContactForm />
+        </div>
+      </motion.section>
+
       {/* CTA Section */}
       <motion.section
         className="cta"
@@ -604,6 +641,9 @@ function App() {
             className="btn-cta"
             whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(255,255,255,0.3)" }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}
           >
             Schedule a Discovery Call <ArrowRight className="icon-small" />
           </motion.button>

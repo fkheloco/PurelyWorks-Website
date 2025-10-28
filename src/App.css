@@ -626,3 +626,16 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Contact Section */
+.contact-section {
+  padding: 6rem 2rem;
+  background: var(--section-bg);
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
