@@ -240,7 +240,7 @@ function App() {
           </motion.h2>
           <div className="services-grid">
             {servicesData.map((service, index) => (
-              <motion.div key={index} className="service-card" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
+              <motion.div key={index} className="service-card" whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.4 }} whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
                 <motion.div className="service-icon" style={{ backgroundColor: `${service.color}20` }} whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }}>
                   <service.icon style={{ color: service.color }} />
                 </motion.div>
@@ -249,7 +249,13 @@ function App() {
                 <p>{service.description}</p>
                 <ul className="service-features">
                   {service.features.map((feature, i) => (
-                    <motion.li key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 + i * 0.05 }}>
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.05 }}
+                    >
                       <Check className="icon-tiny" />
                       {feature}
                     </motion.li>
@@ -303,73 +309,105 @@ function App() {
       <section className="comparison" id="how">
         <div className="container">
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-title">How We're Different</motion.h2>
-          <div className="flex flex-wrap justify-center px-4 py-8" style={{ gap: '48px', perspective: '1000px' }}>
-            {/* Traditional Card - Brown Tint */}
+          <div className="services-grid" style={{ maxWidth: '900px', margin: '0 auto', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))' }}>
+            {/* Traditional Card */}
             <motion.div
-              className="w-full max-w-[320px] px-6 py-6 rounded-[15px] flex flex-col items-center"
-              style={{ backgroundColor: '#CFA685', minHeight: '260px', transformStyle: 'preserve-3d' }}
-              initial={{ opacity: 0, y: 20 }}
+              className="service-card"
+              style={{
+                background: 'linear-gradient(135deg, #8B7355 0%, #A0826D 100%)',
+                color: 'white',
+                border: '1px solid rgba(139, 115, 85, 0.3)'
+              }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05, rotateY: -9, rotateX: 2.2 }}
-              transition={{ duration: 0.3 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.4 }}
+              whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(139, 115, 85, 0.3)' }}
             >
-              <h3 className="text-lg font-bold text-gray-900 text-center" style={{ paddingTop: '20px', paddingBottom: '20px' }}>Traditional Services</h3>
-              <ul className="space-y-2 w-full">
-                <li className="flex items-center justify-center gap-2 text-gray-900 text-sm">
-                  <X className="w-4 h-4 text-red-600 flex-shrink-0" />
-                  <span>Manual processes only</span>
+              <div style={{
+                width: '80px',
+                height: '80px',
+                borderRadius: '20px',
+                background: 'rgba(255, 255, 255, 0.15)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '1.5rem'
+              }}>
+                <X style={{ width: '40px', height: '40px', color: '#ff6b6b' }} />
+              </div>
+              <h3 style={{ color: 'white', fontSize: '1.8rem', marginBottom: '1rem' }}>Traditional Services</h3>
+              <p style={{ color: 'rgba(255, 255, 255, 0.9)', marginBottom: '1.5rem' }}>The old way of doing business</p>
+              <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.8rem', color: 'rgba(255, 255, 255, 0.95)' }}>
+                  <X className="icon-tiny" style={{ color: '#ff6b6b' }} />
+                  Manual processes only
                 </li>
-                <li className="flex items-center justify-center gap-2 text-gray-900 text-sm">
-                  <X className="w-4 h-4 text-red-600 flex-shrink-0" />
-                  <span>Fixed team sizes</span>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.8rem', color: 'rgba(255, 255, 255, 0.95)' }}>
+                  <X className="icon-tiny" style={{ color: '#ff6b6b' }} />
+                  Fixed team sizes
                 </li>
-                <li className="flex items-center justify-center gap-2 text-gray-900 text-sm">
-                  <X className="w-4 h-4 text-red-600 flex-shrink-0" />
-                  <span>US-only pricing</span>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.8rem', color: 'rgba(255, 255, 255, 0.95)' }}>
+                  <X className="icon-tiny" style={{ color: '#ff6b6b' }} />
+                  US-only pricing
                 </li>
-                <li className="flex items-center justify-center gap-2 text-gray-900 text-sm">
-                  <X className="w-4 h-4 text-red-600 flex-shrink-0" />
-                  <span>Vendor owns IP</span>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.8rem', color: 'rgba(255, 255, 255, 0.95)' }}>
+                  <X className="icon-tiny" style={{ color: '#ff6b6b' }} />
+                  Vendor owns IP
                 </li>
-                <li className="flex items-center justify-center gap-2 text-gray-900 text-sm">
-                  <X className="w-4 h-4 text-red-600 flex-shrink-0" />
-                  <span>Rigid contracts</span>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.8rem', color: 'rgba(255, 255, 255, 0.95)' }}>
+                  <X className="icon-tiny" style={{ color: '#ff6b6b' }} />
+                  Rigid contracts
                 </li>
               </ul>
             </motion.div>
 
-            {/* Purely Works Card - Teal Tint */}
+            {/* Purely Works Card */}
             <motion.div
-              className="w-full max-w-[320px] px-6 py-6 rounded-[15px] flex flex-col items-center"
-              style={{ backgroundColor: '#7bb1d9', minHeight: '260px', transformStyle: 'preserve-3d' }}
-              initial={{ opacity: 0, y: 20 }}
+              className="service-card"
+              style={{
+                background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                color: 'white',
+                border: '1px solid rgba(79, 172, 254, 0.3)'
+              }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05, rotateY: 9, rotateX: 2.2 }}
-              transition={{ duration: 0.3 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(79, 172, 254, 0.4)' }}
             >
-              <h3 className="text-lg font-bold text-gray-900 text-center" style={{ paddingTop: '20px', paddingBottom: '20px' }}>Purely Works</h3>
-              <ul className="space-y-2 w-full">
-                <li className="flex items-center justify-center gap-2 text-gray-900 text-sm">
-                  <Check className="w-4 h-4 text-green-700 flex-shrink-0" />
-                  <span>AI + human expertise</span>
+              <div style={{
+                width: '80px',
+                height: '80px',
+                borderRadius: '20px',
+                background: 'rgba(255, 255, 255, 0.2)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '1.5rem'
+              }}>
+                <Check style={{ width: '40px', height: '40px', color: '#51cf66' }} />
+              </div>
+              <h3 style={{ color: 'white', fontSize: '1.8rem', marginBottom: '1rem' }}>Purely Works</h3>
+              <p style={{ color: 'rgba(255, 255, 255, 0.9)', marginBottom: '1.5rem' }}>The smarter way forward</p>
+              <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.8rem', color: 'rgba(255, 255, 255, 0.95)' }}>
+                  <Check className="icon-tiny" style={{ color: '#51cf66' }} />
+                  AI + human expertise
                 </li>
-                <li className="flex items-center justify-center gap-2 text-gray-900 text-sm">
-                  <Check className="w-4 h-4 text-green-700 flex-shrink-0" />
-                  <span>Fractional teams</span>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.8rem', color: 'rgba(255, 255, 255, 0.95)' }}>
+                  <Check className="icon-tiny" style={{ color: '#51cf66' }} />
+                  Fractional teams
                 </li>
-                <li className="flex items-center justify-center gap-2 text-gray-900 text-sm">
-                  <Check className="w-4 h-4 text-green-700 flex-shrink-0" />
-                  <span>Competitive global rates</span>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.8rem', color: 'rgba(255, 255, 255, 0.95)' }}>
+                  <Check className="icon-tiny" style={{ color: '#51cf66' }} />
+                  Competitive global rates
                 </li>
-                <li className="flex items-center justify-center gap-2 text-gray-900 text-sm">
-                  <Check className="w-4 h-4 text-green-700 flex-shrink-0" />
-                  <span>You own everything</span>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.8rem', color: 'rgba(255, 255, 255, 0.95)' }}>
+                  <Check className="icon-tiny" style={{ color: '#51cf66' }} />
+                  You own everything
                 </li>
-                <li className="flex items-center justify-center gap-2 text-gray-900 text-sm">
-                  <Check className="w-4 h-4 text-green-700 flex-shrink-0" />
-                  <span>Flexible engagement</span>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.8rem', color: 'rgba(255, 255, 255, 0.95)' }}>
+                  <Check className="icon-tiny" style={{ color: '#51cf66' }} />
+                  Flexible engagement
                 </li>
               </ul>
             </motion.div>

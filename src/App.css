@@ -427,11 +427,36 @@ body {
 /* Comparison Section */
 .comparison {
   padding: 6rem 2rem;
-  background: var(--section-bg);
-  color: var(--text);
+  background: #bfbfbf;
 }
 
 .comparison .section-title {
+  color: var(--text);
+}
+
+@media (prefers-color-scheme: dark) {
+  .comparison {
+    background: #000000;
+  }
+
+  .comparison .section-title {
+    color: white;
+  }
+}
+
+:root[data-theme="dark"] .comparison {
+  background: #000000;
+}
+
+:root[data-theme="dark"] .comparison .section-title {
+  color: white;
+}
+
+:root[data-theme="light"] .comparison {
+  background: #bfbfbf;
+}
+
+:root[data-theme="light"] .comparison .section-title {
   color: var(--text);
 }
 
@@ -444,10 +469,11 @@ body {
 }
 
 .comparison-column {
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   padding: 3rem;
   border-radius: 20px;
-  border: 1px solid var(--border);
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .comparison-column h3 {
@@ -466,13 +492,13 @@ body {
   gap: 1rem;
   padding: 1rem 0;
   font-size: 1.1rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Philosophy Section */
 .philosophy {
   padding: 6rem 2rem;
-  background: white;
+  background: var(--section-bg);
 }
 
 .philosophy-grid {
@@ -541,10 +567,20 @@ body {
 
 /* Footer */
 .footer {
-  background: var(--dark);
+  background: #1a202c;
   color: white;
   padding: 3rem 2rem;
   text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .footer {
+    background: #000000;
+  }
+}
+
+:root[data-theme="dark"] .footer {
+  background: #000000;
 }
 
 .footer p {
