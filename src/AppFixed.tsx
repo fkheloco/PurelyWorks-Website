@@ -17,7 +17,6 @@ import { useEffect, useState } from 'react';
 import Typewriter from 'typewriter-effect';
 import './App.css';
 import Navbar from './components/Navbar';
-import TiltedCard from './components/TiltedCard';
 import ScrollStack, { ScrollStackItem } from './components/ScrollStack';
 
 type Theme = 'light' | 'dark' | 'auto';
